@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+	<!-- 当多个checkbox 和多个 radio 一起的时候 进行提交数据 -->
+
+	<div class="questionContent" data-type="1">
+		<input type="radio" name="question" />
+	</div>
+
+	<div class="questionContent" data-type="2">
+		<input type="checkbox" name="questioncheck" />question01
+		<input type="checkbox" name="questioncheck" />question02
+		<input type="checkbox" name="questioncheck" />question03
+		<input type="checkbox" name="questioncheck" />question04
+	</div>
+
+	<div class="questionContent" data-type="1">
+		<input type="radio" name="question" />
+	</div>
+	<div class="questionContent" data-type="2">
+		<input type="checkbox" name="questioncheck1" />question01-1
+		<input type="checkbox" name="questioncheck1" />question02-1
+		<input type="checkbox" name="questioncheck1" />question03-1
+		<input type="checkbox" name="questioncheck1" />question04-1
+	</div>
+	<script type="text/javascript">
+	$("#btnclick").click(function(){
+		var boolClick=true;
+		var questionInfo=[];
+		$(".questionContent").each(function(){
+			var _this=$(this);
+			var choseType=_this.attr("data-type");
+			if(choseType == 1){
+				var value= _this.find("input[type='radio']:checked").val();
+				if(typeof value == 'undefined'){
+					boolClick=false;	
+				}else{
+					questionInfo.push(value);
+				}
+			}else{
+				if(typeof _this.find("input[type='checkbox']:checked").val() == 'undefined'){
+					boolClick=false;
+				}else{
+					_this.find("input[type='checkbox']:checked").each(function(){
+						var _that=$(this);
+						var getcheckvalue=_that.val();
+						questionInfo.push(getcheckvalue);
+					});
+				}
+			}
+		});
+
+		if(boolClick){
+			$.post(
+				"",
+				{},
+				function(json){
+
+				},"json"
+			);
+		}
+	});
+
+	</script>
+</body>
+</html>
