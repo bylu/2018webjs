@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    $(".showdoublediscount").each(function(){
+        $(this).find("img").attr("src","/images/wx_shop/double_defult.png");
+    });
+    var jsonStr= msg.data;
+    $(".showdoublediscount").each(function(){
+        var that=$(this);
+        var dataM=that.attr("data-m");
+        if(jsonStr.hasOwnProperty(dataM) && parseInt(jsonStr[dataM])>1){
+            that.find("img").attr("src","/images/wx_shop/"+ jsonStr[dataM] +".png");
+//                                if(gameid=="27047965" || gameid=="2704765"){
+//
+//                                    alert(parseInt(jsonStr[dataM]));
+//                                }
+        }
+    });
+</script>
+</body>
+</html>
